@@ -5,20 +5,19 @@
 ```py
 from os import system
 system('cls')
-try:
-    level = input("Level kamu : ")
-    level = int(level)
-    level = level / 0
-    print (level)
-except TypeError:
-    print("Error")
-except ZeroDivisionError:
-    print(f"Error {level} tidak bisa dibagi 0")
-except ValueError:
-    print("Tolong masukkan huruf saja")
+import csv
+
+tulis = open("abel.csv", "r")
+
+csvTulis = csv.reader(tulis, delimiter = ',')
+
+for i in csvTulis:
+    print(i)
+    print(f"\nFirst : {i[0]}\nLast : {i[1]}\nNumber : {i[2]}")
+tulis.close()
 ```
 ### VS Code & Output
-![C1](https://user-images.githubusercontent.com/93004722/141304775-971f2c11-1b10-4c6d-8953-9bbe1de20bb5.PNG)
+![N1](https://user-images.githubusercontent.com/93004722/142545794-3f449f63-8cb8-4d3a-bb17-c44f1a6d1a2a.PNG)
 
 ## 2. With Block
 ### Source Code
@@ -26,16 +25,19 @@ except ValueError:
 ```py
 from os import system
 system('cls')
-try:
-    level = input("Level kamu : ")
-    level = int(level)
-    level = level / 0
-    print(level)
-except:
-    print("Telah terjadi error")
+import csv
+
+# tulis = open("abel.csv", "r")
+with open("abel.csv", "r") as tulis:
+    csvTulis = csv.reader(tulis, delimiter=',')
+
+    for i in csvTulis:
+        print(i)
+        print(f"\nFirst : {i[0]}\nLast : {i[1]}\nNumber : {i[2]}")
+   # tulis.close()
 ```
 ### VS Code & Output
-![C2](https://user-images.githubusercontent.com/93004722/141305244-f976aa94-29ca-48cb-9b94-a31ef1dfee80.PNG)
+![N2](https://user-images.githubusercontent.com/93004722/142551664-a15d6c2b-bb34-49ed-9f82-9be1e545fc1e.PNG)
 
 ## 3. Module
 ### Source Code
@@ -43,25 +45,23 @@ except:
 ```py
 from os import system
 system('cls')
-text = open("abel.txt", "r")
-print(text.read()) #Membaca file keseluruhan 
-print("\n")
-print(text.readline()) #membaca perbaris
+import nama
+from nama import hello #import fungsi hello secara langsung
 
-#==============================
 
-list =  text.readlines() #list string pada file
-index = 1
-for text in list:
-    print(f"{index} - {text}") # Menampilkan string dari list 
-    index += 1 # nomor urut baris
-    
-text.close()
+result = nama.hello("Abigail Perkasa", 19)
+print(result)
+print("===============================================================")
+result = hello("Game", 0)
+print(result)
+```
+### nama
+```py
+def hello(nama , level):
+   return (f"Hello {nama} - {level}")
 ```
 ### VS Code & Output
-![C3](https://user-images.githubusercontent.com/93004722/141309454-8d28b0d3-7d2e-4b37-ad1c-e532844cb8b1.PNG)
-![C4](https://user-images.githubusercontent.com/93004722/141310089-65a9d5ef-07db-41df-a4b3-2b6b0573bac6.PNG)
-![C5](https://user-images.githubusercontent.com/93004722/141310564-6717d918-1e25-424f-9806-b9e97bd7f164.PNG)
+![N3](https://user-images.githubusercontent.com/93004722/142552598-a92cb9dd-a830-4c1f-b0d1-b9f113ff99ce.PNG)
 
 ## 4. Package
 ### Source Code
